@@ -18,3 +18,6 @@ filetype plugin indent on
 
 set showbreak=>>\ \    
 
+"Automatically open NERDTree if opening empty editor
+autocmd vimenter * if !argc() | NERDTree | endif
+
