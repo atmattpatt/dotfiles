@@ -5,8 +5,18 @@ call pathogen#infect()
 syntax enable
 
 "Solarized color scheme
-set background=dark
-colorscheme solarized
+if &term != "xterm-color"
+	if has("gui-running")
+		let g:solarized_termcolors=256
+		set t_Co=16
+		colorscheme solarized
+		set background=dark
+	else
+		set t_Co=16
+		colorscheme solarized
+		set background=dark
+	endif
+endif
 
 "Formatting
 set number
@@ -20,4 +30,7 @@ set showbreak=>>\ \
 
 "Automatically open NERDTree if opening empty editor
 autocmd vimenter * if !argc() | NERDTree | endif
+
+let g:Powerline_symbols = 'fancy'
+set laststatus=2
 
