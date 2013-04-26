@@ -83,7 +83,7 @@ autocmd BufWritePost */wc/* :call DoAutoSyncFiles()
 "Run SQL on bookit-dev server
 function! RunSQLonBookItDev()
 	if expand("%:e") == "sql"
-		!mysql -h "172.19.1.32" -u "matt.patterson" --password="h45j93f*f" --verbose < %
+		!mysql -h "DEVSERVER" -u "USERNAME" --password="PASSWORD" --verbose < %
 	endif
 endfunction
 
