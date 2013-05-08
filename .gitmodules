@@ -19,3 +19,6 @@
 [submodule ".vim/bundle/phpfolding.vim"]
 	path = .vim/bundle/phpfolding.vim
 	url = git://github.com/vim-scripts/phpfolding.vim.git
+[submodule ".vim/bundle/vim-coffee-script"]
+	path = .vim/bundle/vim-coffee-script
+	url = http://coffeescript.org/extras/coffee-script.js
