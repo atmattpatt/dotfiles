@@ -1,0 +1,17 @@
+[user]
+	name = Matthew Patterson
+	email = matthew.s.patterson@gmail.com
+[color]
+	diff = auto
+[alias]
+	st = status
+	ss = status --short
+	df = diff
+	dc = diff --cached
+	ls = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ms = merge --squash
+	up = "!git remote update -p; git merge --ff-only @{u}"
+	offmyplane = "!git rm -r --cached .; git reset --hard"
+	rgrep = "!git ls-remote | grep --color=always -i "
+[core]
+	excludesfile = /home/mattpatterson/.gitignore_global
