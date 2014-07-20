@@ -479,6 +479,43 @@ def add_jobs_segment():
 add_jobs_segment()
 
 
+import subprocess
+
+
+def add_php_version_segment():
+    try:
+        output = subprocess.check_output(['php', '-r', 'echo PHP_VERSION;'], stderr=subprocess.STDOUT)
+        if '-' in output:
+            version = ' php %s ' % output.split('-')[0]
+        else:
+            version = ' php %s ' % output
+
+        powerline.append(version, 15, 4)
+    except OSError:
+        return
+
+add_php_version_segment()
+
+
+import subprocess
+
+
+def add_ruby_version_segment():
+    try:
+        p1 = subprocess.Popen(["ruby", "-v"], stdout=subprocess.PIPE)
+        p2 = subprocess.Popen(["sed", "s/ (.*//"], stdin=p1.stdout, stdout=subprocess.PIPE)
+        version = ' {0} '.format(p2.communicate()[0].rstrip())
+        if os.environ.has_key("GEM_HOME"):
+          gem = os.environ["GEM_HOME"].split("@")
+          if len(gem) > 1:
+            version += " " + gem[1]
+        powerline.append(version, 15, 1)
+    except OSError:
+        return
+
+add_ruby_version_segment()
+
+
 def add_root_indicator_segment():
     root_indicators = {
         'bash': ' \\$ ',

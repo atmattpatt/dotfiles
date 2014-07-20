@@ -1,0 +1,16 @@
+# vim: ft=zsh
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias .h="cd $HOME"
+
+alias ll="ls -l"
+alias la="ls -la"
+
+# Common programs
+alias g="git"
+alias ag="sudo apt-get"
+alias ac="apt-cache"
