@@ -15,4 +15,4 @@
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	rgrep = "!git ls-remote | grep --color=always -i "
 [core]
-	excludesfile = /home/mattpatterson/.gitignore_global
+	excludesfile = /home/matthewpatterson/.gitignore_global
