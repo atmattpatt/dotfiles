@@ -69,7 +69,7 @@ class Powerline:
         segment = self.segments[idx]
         next_segment = self.segments[idx + 1] if idx < len(self.segments)-1 else None
         next_bg = self.reset
-        if next_segment and not next_segment[0].startswith('\n\r'):
+        if next_segment and not next_segment[0].startswith('\r\n'):
             next_bg = self.bgcolor(next_segment[2])
 
         return ''.join((
@@ -178,41 +178,57 @@ class Color(DefaultColor):
     pass
 
 
-class Color(DefaultColor):
-    USERNAME_FG = 15
-    USERNAME_BG = 4
-    USERNAME_ROOT_BG = 1
+class DefaultColor:
+    """
+    This class should have the default colors for every segment.
+    Please test every new segment with this theme first.
+    """
+    USERNAME_FG = 250
+    USERNAME_BG = 240
+    USERNAME_ROOT_BG = 124
 
-    HOSTNAME_FG = 15
-    HOSTNAME_BG = 10
+    HOSTNAME_FG = 250
+    HOSTNAME_BG = 238
 
-    HOME_SPECIAL_DISPLAY = False
-    PATH_FG = 7
-    PATH_BG = 10
-    CWD_FG = 15
-    SEPARATOR_FG = 14
+    HOME_SPECIAL_DISPLAY = True
+    HOME_BG = 31  # blueish
+    HOME_FG = 15  # white
+    PATH_BG = 237  # dark grey
+    PATH_FG = 250  # light grey
+    CWD_FG = 254  # nearly-white grey
+    SEPARATOR_FG = 244
 
-    READONLY_BG = 1
-    READONLY_FG = 7
+    READONLY_BG = 124
+    READONLY_FG = 254
 
-    REPO_CLEAN_FG = 14
-    REPO_CLEAN_BG = 8
-    REPO_DIRTY_FG = 1
-    REPO_DIRTY_BG = 8
+    SSH_BG = 166 # medium orange
+    SSH_FG = 254
 
-    JOBS_FG = 4
-    JOBS_BG = 8
+    REPO_CLEAN_BG = 148  # a light green color
+    REPO_CLEAN_FG = 0  # black
+    REPO_DIRTY_BG = 161  # pink/red
+    REPO_DIRTY_FG = 15  # white
 
+    JOBS_FG = 39
+    JOBS_BG = 238
+
+    CMD_PASSED_BG = 236
     CMD_PASSED_FG = 15
-    CMD_PASSED_BG = 2
+    CMD_FAILED_BG = 161
     CMD_FAILED_FG = 15
-    CMD_FAILED_BG = 1
 
-    SVN_CHANGES_FG = REPO_DIRTY_FG
-    SVN_CHANGES_BG = REPO_DIRTY_BG
+    SVN_CHANGES_BG = 148
+    SVN_CHANGES_FG = 22  # dark green
 
-    VIRTUAL_ENV_BG = 15
-    VIRTUAL_ENV_FG = 2
+    VIRTUAL_ENV_BG = 35  # a mid-tone green
+    VIRTUAL_ENV_FG = 00
+
+class Color(DefaultColor):
+    """
+    This subclass is required when the user chooses to use 'default' theme.
+    Because the segments require a 'Color' class for every theme.
+    """
+    pass
 
 
 
@@ -356,127 +372,18 @@ except subprocess.CalledProcessError:
 
 
 import os
-import subprocess
 
-def get_hg_status():
-    has_modified_files = False
-    has_untracked_files = False
-    has_missing_files = False
-    output = subprocess.Popen(['hg', 'status'],
-            stdout=subprocess.PIPE).communicate()[0]
-    for line in output.split('\n'):
-        if line == '':
-            continue
-        elif line[0] == '?':
-            has_untracked_files = True
-        elif line[0] == '!':
-            has_missing_files = True
-        else:
-            has_modified_files = True
-    return has_modified_files, has_untracked_files, has_missing_files
-
-def add_hg_segment():
-    branch = os.popen('hg branch 2> /dev/null').read().rstrip()
-    if len(branch) == 0:
-        return False
-    bg = Color.REPO_CLEAN_BG
-    fg = Color.REPO_CLEAN_FG
-    has_modified_files, has_untracked_files, has_missing_files = get_hg_status()
-    if has_modified_files or has_untracked_files or has_missing_files:
-        bg = Color.REPO_DIRTY_BG
-        fg = Color.REPO_DIRTY_FG
-        extra = ''
-        if has_untracked_files:
-            extra += '+'
-        if has_missing_files:
-            extra += '!'
-        branch += (' ' + extra if extra != '' else '')
-    return powerline.append(' %s ' % branch, fg, bg)
-
-add_hg_segment()
-
-
-import subprocess
-
-def add_svn_segment():
-    is_svn = subprocess.Popen(['svn', 'status'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    is_svn_output = is_svn.communicate()[1].strip()
-    if len(is_svn_output) != 0:
+def add_virtual_env_segment():
+    env = os.getenv('VIRTUAL_ENV')
+    if env is None:
         return
 
-    #"svn status | grep -c "^[ACDIMRX\\!\\~]"
-    p1 = subprocess.Popen(['svn', 'status'], stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE)
-    p2 = subprocess.Popen(['grep', '-c', '^[ACDIMR\\!\\~]'],
-            stdin=p1.stdout, stdout=subprocess.PIPE)
-    output = p2.communicate()[0].strip()
-    if len(output) > 0 and int(output) > 0:
-        changes = output.strip()
-        powerline.append(' %s ' % changes, Color.SVN_CHANGES_FG, Color.SVN_CHANGES_BG)
+    env_name = os.path.basename(env)
+    bg = Color.VIRTUAL_ENV_BG
+    fg = Color.VIRTUAL_ENV_FG
+    powerline.append(' %s ' % env_name, fg, bg)
 
-try:
-    add_svn_segment()
-except OSError:
-    pass
-except subprocess.CalledProcessError:
-    pass
-
-
-import os
-import subprocess
-
-def get_fossil_status():
-    has_modified_files = False
-    has_untracked_files = False
-    has_missing_files = False
-    output = os.popen('fossil changes 2>/dev/null').read().strip()
-    has_untracked_files = True if os.popen("fossil extras 2>/dev/null").read().strip() else False
-    has_missing_files = 'MISSING' in output
-    has_modified_files = 'EDITED' in output
-
-    return has_modified_files, has_untracked_files, has_missing_files
-
-def add_fossil_segment():
-    subprocess.Popen(['fossil'], stdout=subprocess.PIPE).communicate()[0]
-    branch = ''.join([i.replace('*','').strip() for i in os.popen("fossil branch 2> /dev/null").read().strip().split("\n") if i.startswith('*')])
-    if len(branch) == 0:
-        return
-
-    bg = Color.REPO_CLEAN_BG
-    fg = Color.REPO_CLEAN_FG
-    has_modified_files, has_untracked_files, has_missing_files = get_fossil_status()
-    if has_modified_files or has_untracked_files or has_missing_files:
-        bg = Color.REPO_DIRTY_BG
-        fg = Color.REPO_DIRTY_FG
-        extra = ''
-        if has_untracked_files:
-            extra += '+'
-        if has_missing_files:
-            extra += '!'
-        branch += (' ' + extra if extra != '' else '')
-    powerline.append(' %s ' % branch, fg, bg)
-
-try:
-    add_fossil_segment()
-except OSError:
-    pass
-except subprocess.CalledProcessError:
-    pass
-
-
-import os
-import re
-import subprocess
-
-def add_jobs_segment():
-    pppid = subprocess.Popen(['ps', '-p', str(os.getppid()), '-oppid='], stdout=subprocess.PIPE).communicate()[0].strip()
-    output = subprocess.Popen(['ps', '-a', '-o', 'ppid'], stdout=subprocess.PIPE).communicate()[0]
-    num_jobs = len(re.findall(str(pppid), output)) - 1
-
-    if num_jobs > 0:
-        powerline.append(' %d ' % num_jobs, Color.JOBS_FG, Color.JOBS_BG)
-
-add_jobs_segment()
+add_virtual_env_segment()
 
 
 import subprocess
@@ -516,10 +423,25 @@ def add_ruby_version_segment():
 add_ruby_version_segment()
 
 
+import subprocess
+
+
+def add_node_version_segment():
+    try:
+        output = subprocess.check_output(['node', '--version'], stderr=subprocess.STDOUT)
+        version = ' node %s ' % output.strip('v').strip()
+
+        powerline.append(version, 15, 2)
+    except OSError:
+        return
+
+add_node_version_segment()
+
+
 def add_root_indicator_segment():
     root_indicators = {
         'bash': ' \\$ ',
-        'zsh': '\n\r $ ',
+        'zsh': '\r\n $ ',
         'bare': ' $ ',
     }
     bg = Color.CMD_PASSED_BG

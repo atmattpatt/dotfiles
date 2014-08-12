@@ -27,4 +27,4 @@
 	url = git://github.com/vim-ruby/vim-ruby.git
 [submodule "vendor/powerline-shell"]
 	path = vendor/powerline-shell
-	url = https://github.com/milkbikis/powerline-shell.git
+	url = git@github.com:matthewpatterson/powerline-shell.git
