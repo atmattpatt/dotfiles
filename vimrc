@@ -46,3 +46,5 @@ let mapleader=","
 nnoremap <F1> :NERDTree<CR>
 nnoremap <Leader>d :VCSDiff<CR>
 
+"File types
+autocmd BufEnter *.sls setlocal ft=yaml | setlocal smarttab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal expandtab
