@@ -1,6 +1,8 @@
 "Pathogen
 call pathogen#infect()
 
+set nocompatible
+
 "Enable syntax highlighting
 syntax enable
 
@@ -27,6 +29,7 @@ set number
 set smarttab
 set shiftwidth=4
 set tabstop=4
+set expandtab
 filetype plugin indent on
 
 set showbreak=>>\ \    
