@@ -21,7 +21,7 @@ if &term != "xterm-color"
 endif
 
 "Mouse integration
-set mouse=a
+set mouse=n
 
 "Formatting
 set number
@@ -46,8 +46,9 @@ let g:CommandTMaxFiles=1000000
 "Key bindings
 let mapleader=","
 
-nnoremap <F1> :NERDTree<CR>
-nnoremap <Leader>d :VCSDiff<CR>
+nnoremap <Leader>gd :GundoToggle<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>nn :NERDTreeClose<CR>
+nnoremap <Leader>df :VCSDiff<CR>
 
 "File types
-autocmd BufEnter *.sls setlocal ft=yaml | setlocal smarttab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal expandtab
