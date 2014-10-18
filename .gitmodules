@@ -22,6 +22,9 @@
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-hack"]
+	path = vim/bundle/vim-hack
+	url = git://github.com/hhvm/vim-hack.git
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
