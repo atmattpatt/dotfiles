@@ -16,3 +16,4 @@
 	rgrep = "!git ls-remote | grep --color=always -i "
 [core]
 	excludesfile = /home/matthewpatterson/.gitignore_global
+	editor = vim
