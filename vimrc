@@ -52,3 +52,4 @@ nnoremap <Leader>nn :NERDTreeClose<CR>
 nnoremap <Leader>df :VCSDiff<CR>
 
 "File types
+autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
