@@ -50,6 +50,7 @@ nnoremap <Leader>gd :GundoToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>nn :NERDTreeClose<CR>
 nnoremap <Leader>df :VCSDiff<CR>
+nnoremap <Leader>be :BufExplorer<CR>
 
 "File types
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
