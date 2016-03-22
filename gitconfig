@@ -17,3 +17,5 @@
 [core]
 	excludesfile = /home/matthewpatterson/.gitignore_global
 	editor = vim
+[push]
+	default = simple
