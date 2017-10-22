@@ -11,11 +11,11 @@ if &term != "xterm-color"
 	if has("gui-running")
 		let g:solarized_termcolors=256
 		set t_Co=16
-		colorscheme solarized
+		colorscheme anotherdark
 		set background=dark
 	else
 		set t_Co=16
-		colorscheme solarized
+		colorscheme anotherdark
 		set background=dark
 	endif
 endif

@@ -1,8 +1,10 @@
-[user]
-	name = Matthew Patterson
-	email = matthew.s.patterson@gmail.com
+[include]
+    path = ~/.gitconfig_user
 [color]
 	diff = auto
+[color "diff-highlight"]
+    oldHighlight = "black #ffaaaa"
+    newHighlight = "black #aaffaa"
 [alias]
 	st = status
 	ss = status --short
@@ -15,7 +17,21 @@
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	rgrep = "!git ls-remote | grep --color=always -i "
 [core]
-	excludesfile = /home/matthewpatterson/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = vim
 [push]
 	default = simple
+[github]
+	user = atmattpatt
+[credential]
+	helper = osxkeychain
+[pager]
+    diff = diff-highlight | less
+    log = diff-highlight | less
+    show = diff-highlight | less
+[branch "master"]
+    mergeoptions = --no-ff
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

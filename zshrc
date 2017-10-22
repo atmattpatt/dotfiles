@@ -1,7 +1,7 @@
 source "$HOME/.aliases"
 
 function powerline_precmd() {
-  export PS1="$(~/.powerline-shell.py $? --shell zsh 2> /dev/null)"
+  export PS1="$(~/.powerline-shell.py $? --shell zsh --mode flat 2> /dev/null)"
 }
 
 function install_powerline_precmd() {
@@ -14,3 +14,6 @@ function install_powerline_precmd() {
 }
 
 install_powerline_precmd
+
+export PATH="$HOME/bin:$PATH"
+export GPG_TTY=$(tty)
