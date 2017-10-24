@@ -1,12 +1,43 @@
-"Pathogen
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'benmills/vimux'
+Plug 'chase/vim-ansible-yaml'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform'
+Plug 'hhvm/vim-hack'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'junegunn/fzf', { 'tag': '0.16.7', 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'majutsushi/tagbar'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'pangloss/vim-javascript'
+Plug 'pgr0ss/vimux-ruby-test'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-surround'
+Plug 'uarun/vim-protobuf'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/matchit.zip'
+
+call plug#end()
 
 set nocompatible
 
 "Enable syntax highlighting
 syntax enable
 
-"Solarized color scheme
+"Color scheme
 if &term != "xterm-color"
 	if has("gui-running")
 		let g:solarized_termcolors=256
@@ -24,12 +55,15 @@ endif
 set mouse=n
 
 "Formatting
+set hlsearch
 set number
+set ruler
 
 set smarttab
 set shiftwidth=4
 set tabstop=4
 set expandtab
+set nosmartindent
 filetype plugin indent on
 
 set showbreak=>>\ \    
@@ -37,20 +71,49 @@ set showbreak=>>\ \
 "Automatically open NERDTree if opening empty editor
 autocmd vimenter * if !argc() | NERDTree | endif
 
-let g:Powerline_symbols = 'fancy'
+"Powerline
 set laststatus=2
+set showtabline=2
 
-"Command T overrides
-let g:CommandTMaxFiles=1000000
+"Fuzzy find
+let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/|build_intellij/"' 
+let $FZF_DEFAULT_OPTS = '--reverse'
+let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+"Markdown
+let g:vim_markdown_folding_disabled = 1
 
 "Key bindings
 let mapleader=","
 
-nnoremap <Leader>gd :GundoToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>nn :NERDTreeClose<CR>
-nnoremap <Leader>df :VCSDiff<CR>
 nnoremap <Leader>be :BufExplorer<CR>
+
+map <silent> <leader>ff :Files<CR>
+map <silent> <leader>t :Files<CR>
+map <silent> <leader>fg :GFiles<CR>
+map <silent> <leader>fb :Buffers<CR>
+map <silent> <leader>ft :Tags<CR>
 
 "File types
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
+
+"Ruby mappings
+map <silent> <Leader>rb :wa<CR> :call _RunAll()<CR>
+map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
+map <silent> <Leader>rf :wa<CR> :call _RunLine()<CR>
+map <silent> <Leader>rl :wa<CR> :call _RunLast()<CR>
+map <silent> <Leader>rs :!ruby -c %<CR>
+
+"Highlight trailing whitespace
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red

@@ -401,8 +401,6 @@ def add_php_version_segment():
     except OSError:
         return
 
-add_php_version_segment()
-
 
 import subprocess
 
