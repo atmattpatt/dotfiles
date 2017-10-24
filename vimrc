@@ -109,7 +109,8 @@ autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
 map <silent> <Leader>rb :wa<CR> :call _RunAll()<CR>
 map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
 map <silent> <Leader>rf :wa<CR> :call _RunLine()<CR>
-map <silent> <Leader>rl :wa<CR> :call _RunLast()<CR>
+map <silent> <Leader>rl :wa<CR> :VimuxRunLastCommand<CR>
+map <silent> <Leader>vp :wa<CR> :VimuxPromptCommand<CR>
 map <silent> <Leader>rs :!ruby -c %<CR>
 
 "Highlight trailing whitespace
