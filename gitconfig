@@ -1,30 +1,30 @@
 [include]
     path = ~/.gitconfig_user
 [color]
-	diff = auto
+    diff = auto
 [color "diff-highlight"]
     oldHighlight = "black #ffaaaa"
     newHighlight = "black #aaffaa"
 [alias]
-	st = status
-	ss = status --short
-	co = checkout
-	cb = checkout --branch
-	aa = add --all --verbose
-	df = diff
-	dc = diff --cached
-	ls = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	up = "!git remote update -p; git merge --ff-only @{u}"
-	rgrep = "!git ls-remote | grep --color=always -i "
+    st = status
+    ss = status --short
+    co = checkout
+    cb = checkout --branch
+    aa = add --all --verbose
+    df = diff
+    dc = diff --cached
+    ls = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%Cgreen gpg/%G? %GK %GS%Creset' --abbrev-commit
+    up = "!git remote update -p; git merge --ff-only @{u}"
+    rgrep = "!git ls-remote | grep --color=always -i "
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = vim
+    excludesfile = ~/.gitignore_global
+    editor = vim
 [push]
-	default = simple
+    default = simple
 [github]
-	user = atmattpatt
+    user = atmattpatt
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [pager]
     diff = diff-highlight | less
     log = diff-highlight | less
@@ -32,6 +32,6 @@
 [branch "master"]
     mergeoptions = --no-ff
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = gpg
+    program = gpg
