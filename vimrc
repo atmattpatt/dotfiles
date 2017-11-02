@@ -123,3 +123,9 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+"Test outline
+function VimuxTestOutline()
+  VimuxRunCommand('clear && grep -nE "^(\s*)(describe|context|specify|it|example|test|def test)" ' . expand('%'))
+endfunction
+nnoremap <silent> <leader>so :call VimuxTestOutline()<CR>
