@@ -101,6 +101,11 @@ map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
 
+map <silent> <Leader>gt :VimuxRunCommand "clear && git status"<CR>
+map <silent> <Leader>gd :VimuxRunCommand "clear && git diff"<CR>
+map <silent> <Leader>gs :VimuxRunCommand "clear && git diff --cached"<CR>
+map <silent> <Leader>gb :VimuxRunCommand "clear && git branch"<CR>
+
 "File types
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
 autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
