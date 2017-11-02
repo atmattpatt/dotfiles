@@ -52,7 +52,7 @@ if &term != "xterm-color"
 endif
 
 "Mouse integration
-set mouse=n
+set mouse=
 
 "Formatting
 set hlsearch
