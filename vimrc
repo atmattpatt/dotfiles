@@ -95,6 +95,7 @@ let mapleader=","
 
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>nn :NERDTreeClose<CR>
+nnoremap <Leader>nf :NERDTreeFind<CR>
 nnoremap <Leader>be :BufExplorer<CR>
 
 map <silent> <leader>ff :Files<CR>
