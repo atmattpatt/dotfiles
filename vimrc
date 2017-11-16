@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'benmills/vimux'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'chase/vim-ansible-yaml'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'flazz/vim-colorschemes'
@@ -14,11 +14,13 @@ Plug 'jtratner/vim-flavored-markdown'
 Plug 'junegunn/fzf', { 'tag': '0.16.7', 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-textobj-user'
+Plug 'kchmck/vim-coffee-script'
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pangloss/vim-javascript'
 Plug 'pgr0ss/vimux-ruby-test'
 Plug 'plasticboy/vim-markdown'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-cucumber'
