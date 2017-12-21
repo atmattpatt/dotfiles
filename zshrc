@@ -15,5 +15,5 @@ function install_powerline_precmd() {
 
 install_powerline_precmd
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH:$HOME/.rvm/bin"
 export GPG_TTY=$(tty)
