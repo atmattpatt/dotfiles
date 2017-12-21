@@ -1,5 +1,11 @@
 source "$HOME/.aliases"
 
+if [ -d "$HOME/.aliases.d" ]; then
+  for file in $HOME/.aliases.d/*; do
+    source $file
+  done
+fi
+
 function powerline_precmd() {
   export PS1="$(~/.powerline-shell.py $? --shell zsh 2> /dev/null)"
 }
