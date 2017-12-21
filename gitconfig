@@ -20,7 +20,7 @@
     excludesfile = ~/.gitignore_global
     editor = vim
 [push]
-    default = simple
+    default = current
 [github]
     user = atmattpatt
 [credential]
