@@ -115,6 +115,7 @@ map <silent> <Leader>gb :VimuxRunCommand "clear && git branch"<CR>
 "File types
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
 autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType vim set tabstop=2|set shiftwidth=2|set expandtab
 
 "Ruby mappings
 map <silent> <Leader>rb :wa<CR> :RunAllRubyTests<CR>
