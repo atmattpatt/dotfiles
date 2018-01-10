@@ -18,7 +18,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pangloss/vim-javascript'
-Plug 'pgr0ss/vimux-ruby-test'
+Plug 'pgr0ss/vimux-ruby-test' | Plug 'atmattpatt/github-ruby-test', { 'branch': 'focused-test' }
 Plug 'plasticboy/vim-markdown'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'puppetlabs/puppet-syntax-vim'
@@ -117,9 +117,9 @@ autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
 autocmd FileType yaml set tabstop=2|set shiftwidth=2|set expandtab
 
 "Ruby mappings
-map <silent> <Leader>rb :wa<CR> :call _RunAll()<CR>
+map <silent> <Leader>rb :wa<CR> :RunAllRubyTests<CR>
 map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
-map <silent> <Leader>rf :wa<CR> :call _RunLine()<CR>
+map <silent> <Leader>rf :wa<CR> :RunRubyFocusedTest<CR>
 map <silent> <Leader>rl :wa<CR> :VimuxRunLastCommand<CR>
 map <silent> <Leader>vp :wa<CR> :VimuxPromptCommand<CR>
 map <silent> <Leader>rs :!ruby -c %<CR>
