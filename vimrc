@@ -33,6 +33,7 @@ Plug 'tpope/vim-surround'
 Plug 'uarun/vim-protobuf'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/matchit.zip'
+Plug 'w0rp/ale'
 
 call plug#end()
 
