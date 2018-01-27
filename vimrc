@@ -21,6 +21,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pgr0ss/vimux-ruby-test'
 Plug 'plasticboy/vim-markdown'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'puppetlabs/puppet-syntax-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-cucumber'
