@@ -10,6 +10,8 @@ Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform'
 Plug 'hhvm/vim-hack'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'joker1007/vim-ruby-heredoc-syntax'
+Plug 'jparise/vim-graphql'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'junegunn/fzf', { 'tag': '0.16.7', 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
