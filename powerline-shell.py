@@ -3,6 +3,9 @@
 
 import argparse
 import os
+import platform
+import re
+import subprocess
 import sys
 
 def warn(msg):
@@ -233,7 +236,6 @@ class Color(DefaultColor):
 
 
 def add_username_segment():
-    import os
     if powerline.args.shell == 'bash':
         user_prompt = ' \\u '
     elif powerline.args.shell == 'zsh':
@@ -251,8 +253,6 @@ def add_username_segment():
 add_username_segment()
 
 
-import os
-
 def add_ssh_segment():
 
     if os.getenv('SSH_CLIENT'):
@@ -260,8 +260,6 @@ def add_ssh_segment():
 
 add_ssh_segment()
 
-
-import os
 
 def get_short_path(cwd):
     home = os.getenv('HOME')
@@ -300,8 +298,6 @@ def add_cwd_segment():
 add_cwd_segment()
 
 
-import os
-
 def add_read_only_segment():
     cwd = powerline.cwd or os.getenv('PWD')
 
@@ -311,8 +307,6 @@ def add_read_only_segment():
 add_read_only_segment()
 
 
-import re
-import subprocess
 
 def get_git_status():
     has_pending_commits = True
@@ -371,8 +365,6 @@ except subprocess.CalledProcessError:
     pass
 
 
-import os
-
 def add_virtual_env_segment():
     env = os.getenv('VIRTUAL_ENV')
     if env is None:
@@ -385,8 +377,6 @@ def add_virtual_env_segment():
 
 add_virtual_env_segment()
 
-
-import subprocess
 
 
 def add_php_version_segment():
@@ -401,8 +391,6 @@ def add_php_version_segment():
     except OSError:
         return
 
-
-import subprocess
 
 
 def add_ruby_version_segment():
@@ -421,10 +409,6 @@ def add_ruby_version_segment():
 add_ruby_version_segment()
 
 
-import platform
-import subprocess
-
-
 def add_node_version_segment():
     try:
         if platform.system() == 'Darwin':
@@ -438,6 +422,31 @@ def add_node_version_segment():
         return
 
 add_node_version_segment()
+
+
+def add_git_copilot_segment():
+    try:
+        if platform.system() == 'Darwin':
+            solo_template = u' \U0001F984 '
+            pair_template = u' {0} \U0001F350 '
+        else:
+            solo_template = ' solo '
+            pair_template = ' {0} pair '
+
+        output = subprocess.check_output(['git-copilot', 'status'], stderr=subprocess.STDOUT)
+
+        match = re.match(r'.*working with (\d+) pair.*', output)
+        if match is None:
+            copilot = solo_template
+        else:
+            copilot = pair_template.format(match.group(1))
+
+        powerline.append(copilot, 15, 237)
+
+    except OSError:
+        return
+
+add_git_copilot_segment()
 
 
 def add_root_indicator_segment():
@@ -454,6 +463,5 @@ def add_root_indicator_segment():
     powerline.append(root_indicators[powerline.args.shell], fg, bg)
 
 add_root_indicator_segment()
-
 
 sys.stdout.write(powerline.draw())
