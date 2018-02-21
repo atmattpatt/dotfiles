@@ -17,6 +17,9 @@
     up = "!git remote update -p; git merge --ff-only @{u}"
     rgrep = "!git ls-remote | grep --color=always -i "
     copilot = "!git-copilot"
+    cop = copilot
+    pair = "!git-copilot pair"
+    solo = "!git-copilot solo"
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim
