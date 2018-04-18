@@ -16,10 +16,10 @@
     ls = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%Cgreen gpg/%G? %GK %GS%Creset' --abbrev-commit
     up = "!git remote update -p; git merge --ff-only @{u}"
     rgrep = "!git ls-remote | grep --color=always -i "
-    copilot = "!git-copilot"
+    copilot = "!rvm system do git-copilot"
     cop = copilot
-    pair = "!git-copilot pair"
-    solo = "!git-copilot solo"
+    pair = "!rvm system do git-copilot pair"
+    solo = "!rvm system do git-copilot solo"
 [core]
     excludesfile = ~/.gitignore_global
     editor = vim

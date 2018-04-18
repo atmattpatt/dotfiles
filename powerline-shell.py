@@ -433,7 +433,7 @@ def add_git_copilot_segment():
             solo_template = ' solo '
             pair_template = ' {0} pair '
 
-        output = subprocess.check_output(['git-copilot', 'status'], stderr=subprocess.STDOUT)
+        output = subprocess.check_output(['rvm', 'system', 'do', 'git-copilot', 'status'], stderr=subprocess.STDOUT)
 
         match = re.match(r'.*working with (\d+) pair.*', output)
         if match is None:
@@ -443,7 +443,7 @@ def add_git_copilot_segment():
 
         powerline.append(copilot, 15, 237)
 
-    except OSError:
+    except Exception:
         return
 
 add_git_copilot_segment()
