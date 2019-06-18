@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'RRethy/vim-illuminate'
 Plug 'benmills/vimux'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chase/vim-ansible-yaml'
