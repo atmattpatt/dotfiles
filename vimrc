@@ -142,3 +142,6 @@ function VimuxTestOutline()
   VimuxRunCommand('clear && grep -nE "^(\s*)(describe|context|specify|it|example|test|def test)" ' . expand('%'))
 endfunction
 nnoremap <silent> <leader>so :call VimuxTestOutline()<CR>
+
+"Ruby customization
+let g:ruby_indent_assignment_style = 'variable'
