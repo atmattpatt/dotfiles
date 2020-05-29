@@ -22,7 +22,7 @@ Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'pangloss/vim-javascript'
 Plug 'pedrohdz/vim-yaml-folds'
-Plug 'pgr0ss/vimux-ruby-test' | Plug 'atmattpatt/github-ruby-test', { 'branch': 'focused-test' }
+Plug 'pgr0ss/vimux-ruby-test' | Plug 'atmattpatt/github-ruby-test'
 Plug 'plasticboy/vim-markdown'
 Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plug 'puppetlabs/puppet-syntax-vim'
