@@ -14,7 +14,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'joker1007/vim-ruby-heredoc-syntax'
 Plug 'jparise/vim-graphql'
 Plug 'jtratner/vim-flavored-markdown'
-Plug 'junegunn/fzf', { 'tag': '0.21.0', 'dir': '~/.fzf', 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
