@@ -170,6 +170,7 @@ ${FMT_BOLD}TARGET${FMT_RESET}
 }
 
 target_git () {
+    print_info "Installing Git configuration"
     install_file "gitconfig"
     install_file "gitignore_global"
 }
