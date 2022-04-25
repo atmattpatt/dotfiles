@@ -1,43 +1,55 @@
 [include]
-    path = ~/.gitconfig_user
-[color]
-    diff = auto
-[color "diff-highlight"]
-    oldHighlight = "black #ffaaaa"
-    newHighlight = "black #aaffaa"
+    path = ~/.gitconfig_local
+
 [alias]
-    st = status
-    ss = status --short
-    co = checkout
-    cb = checkout --branch
     aa = add --all --verbose
-    df = diff
+    cb = checkout --branch
+    co = checkout
     dc = diff --cached
+    df = diff
     ls = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%Cgreen gpg/%G? %GK %GS%Creset' --abbrev-commit
-    up = "!git remote update -p; git merge --ff-only @{u}"
-    mu = "!git up; git checkout master"
     rain = rebase --autosquash --interactive
-    rgrep = "!git ls-remote | grep --color=always -i "
-    copilot = "!rvm system do git-copilot"
-    cop = copilot
-    pair = "!rvm system do git-copilot pair"
-    solo = "!rvm system do git-copilot solo"
-[core]
-    excludesfile = ~/.gitignore_global
-    editor = vim
-[push]
-    default = current
-[github]
-    user = atmattpatt
-[credential]
-    helper = osxkeychain
-[pager]
-    diff = diff-highlight | less
-    log = diff-highlight | less
-    show = diff-highlight | less
-[branch "master"]
-    mergeoptions = --no-ff
+    ss = show --show-signature
+    st = status
+    sts = status --short
+    up = "!git remote update -p; git merge --ff-only @{u}"
+
 [commit]
     gpgsign = true
-[gpg]
-    program = gpg
+
+[core]
+    preloadindex = true
+    deltabasecachelimit = 4g
+    excludesfile = ~/.gitignore_global
+    page = delta
+    editor = vim
+
+[delta]
+    navigate = true
+
+[diff]
+    colorMoved = default
+
+[feature]
+    manyfiles = true
+
+[fetch]
+    prune = true
+
+[help]
+    autocorrect = 1
+
+[interactive]
+    diffFilter = delta --color-only
+
+[merge]
+    conflictstyle = diff3
+
+[push]
+    default = simple
+
+[branch "main"]
+    mergeoptions = --no-ff
+
+[branch "master"]
+    mergeoptions = --no-ff

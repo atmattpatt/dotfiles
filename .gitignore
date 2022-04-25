@@ -1,5 +1,6 @@
 *.swo
 *.swp
 *.DS_Store
+tmp
 vim/plugged
 vim/_bundle

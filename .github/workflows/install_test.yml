@@ -1,0 +1,13 @@
+name: Install Test
+on:
+  push:
+  schedule:
+    - cron: "45 20 * * 1"
+jobs:
+  MacOS:
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run install script
+        run: install.sh
