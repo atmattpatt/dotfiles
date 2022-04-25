@@ -85,10 +85,6 @@ run () {
 brew_install_packages () {
     local brew_cmd="brew"
 
-    if [ $FORCE -eq 1 ]; then
-        brew_cmd="$brew_cmd --force"
-    fi
-
     if [ $VERBOSE -eq 1 ]; then
         brew_cmd="$brew_cmd --verbose"
     fi
@@ -97,8 +93,14 @@ brew_install_packages () {
         brew_cmd="$brew_cmd --quiet"
     fi
 
+    brew_cmd="$brew_cmd install"
+
+    if [ $FORCE -eq 1 ]; then
+        brew_cmd="$brew_cmd --overwrite"
+    fi
+
     print_info "Installing packages" "$@"
-    run "$brew_cmd" install "$@"
+    run "$brew_cmd" "$@"
 }
 
 install_packages () {
@@ -207,6 +209,13 @@ target_ohmyzsh () {
 }
 
 target_packages () {
+    local oldforce=$FORCE
+
+    # Always install git with force
+    FORCE=1
+    install_packages git
+    FORCE=$oldforce
+
     install_packages \
         bat \
         dog \
@@ -215,7 +224,6 @@ target_packages () {
         exa \
         fd \
         fzf \
-        git \
         git-delta \
         httpie \
         jless \
