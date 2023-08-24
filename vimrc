@@ -50,15 +50,11 @@ syntax enable
 if &term != "xterm-color"
 	if has("gui-running")
 		let g:solarized_termcolors=256
-		set t_Co=16
-		colorscheme anotherdark
-		set background=dark
-	else
-		set t_Co=16
-		colorscheme anotherdark
-		set background=dark
 	endif
 endif
+set t_Co=16
+colorscheme anotherdark
+set background=dark
 
 "Mouse integration
 set mouse=
