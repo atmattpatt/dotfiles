@@ -232,7 +232,7 @@ target_packages () {
         ripgrep \
         tmux \
         wget \
-        vim
+        nvim
 }
 
 main () {

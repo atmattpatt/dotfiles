@@ -21,7 +21,7 @@
     preloadindex = true
     deltabasecachelimit = 4g
     excludesfile = ~/.gitignore_global
-    page = delta
+    pager = delta
     editor = vim
 
 [delta]
@@ -53,5 +53,6 @@
 
 [branch "master"]
     mergeoptions = --no-ff
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
