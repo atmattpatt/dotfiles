@@ -22,7 +22,7 @@
     deltabasecachelimit = 4g
     excludesfile = ~/.gitignore_global
     pager = delta
-    editor = vim
+    editor = nvim
 
 [delta]
     navigate = true
