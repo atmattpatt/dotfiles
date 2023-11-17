@@ -31,7 +31,8 @@
     colorMoved = default
 
 [feature]
-    manyfiles = true
+    manyFiles = false
+    skipHash = false
 
 [fetch]
     prune = true
